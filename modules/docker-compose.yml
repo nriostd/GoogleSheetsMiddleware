@@ -9,7 +9,19 @@ services:
   environment:
    - ENV=development
    - PORT=4000
-   - DB=mongodb://mongodb:27017/todoDev
+   - SECRET=Nicwants2learn
+   - DB=mongodb+srv://Talkdesk-integrations-eng:N1cR2nNun0@cluster0-s6b90.mongodb.net/test?ssl=true&ssl_cert_reqs=CERT_NONE&retryWrites=true&w=majority
+ mongodb:
+  image: mongo:latest
+  container_name: "mongodb"
+  environment:
+   - MONGO_DATA_DIR=/usr/data/db
+   - MONGO_LOG_DIR=/dev/null
+  volumes:
+   - ./data/db:/usr/data/db
+  ports:
+   - 27017:27017
+  command: mongod --logpath=/dev/null # --quiet
 networks:
  default:
   name: web_dev
